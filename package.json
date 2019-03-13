@@ -1,0 +1,23 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "This app match users with similar attitude like a dating web site.  It takes a survey from user to get match.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didachos24/FriendFinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/didachos24/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/didachos24/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
