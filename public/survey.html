@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Friend Finder App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Patua+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <br>
+
+        <h4>Your Name</h4>
+        <input type="text" id="name" class="form-control" required>
+
+        <h4>Your Photo (Link)</h4>
+        <input type="text" id="photo" class="form-control" required>
+        <br>
+        <hr>
+        <br>
+
+        <h2 style="text-align: center"><strong>Survey</strong></h2>
+        <br>
+        <hr>
+        <br>
+
+        <h4>Question 1</h4>
+        <h5>How agree are you going out weekends?</h5>
+        <select class="chosen-select" id="one">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 2</h4>
+        <h5>Do you have an growing saving account for retirement?</h5>
+        <select class="chosen-select" id="two">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 3</h4>
+        <h5>Do you enjoy dancing in party?</h5>
+        <select class="chosen-select" id="three">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 4</h4>
+        <h5>Get a new friendship is a trouble?</h5>
+        <select class="chosen-select" id="four">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 5</h4>
+        <h5>Do you consider youreslf as shy?</h5>
+        <select class="chosen-select" id="five">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 6</h4>
+        <h5>Family is more important than work?</h5>
+        <select class="chosen-select" id="six">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 7</h4>
+        <h5>Soccer better than Football?</h5>
+        <select class="chosen-select" id="seven">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 8</h4>
+        <h5>A new adventure is a risk to get even if don't know how finsh</h5>
+        <select class="chosen-select" id="eight">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 9</h4>
+        <h5>Math is better than arts?</h5>
+        <select class="chosen-select" id="nine">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <h4>Question 10</h4>
+        <h5>Are you empathic with someone's dificults?</h5>
+        <select class="chosen-select" id="ten">
+            <option value=""></option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <hr>
+
+        <button type="submit" class="btn btn-secondary btn-lg btn-block" id="submit">Submit</button>
+
+    </div>
+
+    <br>
+    <br>
+
+    <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a>  |  <a href="https://github.com/didachos24/FriendFinder">Github Repo</a></p>
+            </div>
+        </footer>
+    </div>
+    
+</body>
+</html>
