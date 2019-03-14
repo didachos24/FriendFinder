@@ -1,25 +1,21 @@
 // Call dependencies
 var express = require("express");
-var path = require("path");
 
 // Express call
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //Handle data parsing with Express
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
 
-// Home
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/home.html"));
-});
+// API 
+require("./routing/apiRoutes")(app);
 
-// Survey
-app.get("/survey", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/survey.html"));
-});
+// Home and survey
+require("./routing/htmlRoutes")(app);
 
 // Listener
 app.listen(PORT, function() {

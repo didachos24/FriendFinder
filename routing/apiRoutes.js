@@ -6,13 +6,13 @@ var friends = require("../app/data/friends");
 module.exports = function(app) {
     // Display data of matching friends
     app.get("/api/friends", function(req, res) {
-        res.json(friendsData)
+        res.json(friends)
     });
 
     // Post user's info 
-    app.post("/survey", function(req, res) {
-        friendsData.push(req.body);
+    app.post("/api/friends", function(req, res) {
+        friends.push(req.body);
         res.json(true);
-    })
+    });
 
-}
+};

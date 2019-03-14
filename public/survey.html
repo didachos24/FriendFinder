@@ -33,7 +33,7 @@
 
         <h4>Question 1</h4>
         <h5>How agree are you going out weekends?</h5>
-        <select class="chosen-select" id="one">
+        <select class="selection" id="one">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -44,7 +44,7 @@
 
         <h4>Question 2</h4>
         <h5>Do you have an growing saving account for retirement?</h5>
-        <select class="chosen-select" id="two">
+        <select class="selection" id="two">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -55,7 +55,7 @@
 
         <h4>Question 3</h4>
         <h5>Do you enjoy dancing in party?</h5>
-        <select class="chosen-select" id="three">
+        <select class="selection" id="three">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -66,7 +66,7 @@
 
         <h4>Question 4</h4>
         <h5>Get a new friendship is a trouble?</h5>
-        <select class="chosen-select" id="four">
+        <select class="selection" id="four">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -77,7 +77,7 @@
 
         <h4>Question 5</h4>
         <h5>Do you consider youreslf as shy?</h5>
-        <select class="chosen-select" id="five">
+        <select class="selection" id="five">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -88,7 +88,7 @@
 
         <h4>Question 6</h4>
         <h5>Family is more important than work?</h5>
-        <select class="chosen-select" id="six">
+        <select class="selection" id="six">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -99,7 +99,7 @@
 
         <h4>Question 7</h4>
         <h5>Soccer better than Football?</h5>
-        <select class="chosen-select" id="seven">
+        <select class="selection" id="seven">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -110,7 +110,7 @@
 
         <h4>Question 8</h4>
         <h5>A new adventure is a risk to get even if don't know how finsh</h5>
-        <select class="chosen-select" id="eight">
+        <select class="selection" id="eight">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -121,7 +121,7 @@
 
         <h4>Question 9</h4>
         <h5>Math is better than arts?</h5>
-        <select class="chosen-select" id="nine">
+        <select class="selection" id="nine">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -132,7 +132,7 @@
 
         <h4>Question 10</h4>
         <h5>Are you empathic with someone's dificults?</h5>
-        <select class="chosen-select" id="ten">
+        <select class="selection" id="ten">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -156,6 +156,120 @@
             </div>
         </footer>
     </div>
+
+    <!-- Modal -->
+
+    <div class="result-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Best match!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h2 id="match-name"></h2>
+                <img id="match-img" src="../img/unk.png" alt="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <script>
+    
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
+
+        // Validate all fields are filled
+
+        function validation() {
+            var log = true;
+            
+            $(".form-control").each(function() {
+                if($("this").val() === "") {
+                    log = false;
+                }
+            });
+
+            $(".selection").each(function() {
+                if($("this").val() === "") {
+                    log = false;
+                }
+            });
+        
+        };
+
+        // If all fields are filled
+        if(validation()) {
+
+            var match = {};
+
+            var userData = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: [
+                    $("#one").val(),
+                    $("#two").val(),
+                    $("#three").val(),
+                    $("#four").val(),
+                    $("#five").val(),
+                    $("#six").val(),
+                    $("#seven").val(),
+                    $("#eight").val(),
+                    $("#nine").val(),
+                    $("#ten").val()
+                ]
+            };
+
+
+        $.get("/api/friends", function(data) {
+
+            for(var i = 0; i < userData.length; i++) {
+                
+            };
+        });
+
+        // Post user's data
+        $.post("/api/friends", userData, function(data) {
+
+            $("#match-name").text(data.name);
+            $("#match-img").attr("src", data.photo);
+
+            $("#result-modal").modal("show");
+        });
+
+
+
+            
+        } else{
+            alert("Sorry, please fill every field");
+
+            $("#name").val("");
+            $("#photo").val("");
+            $("#one").val("");
+            $("#two").val("");
+            $("#three").val("");
+            $("#four").val("");
+            $("#five").val("");
+            $("#six").val("");
+            $("#seven").val("");
+            $("#eight").val("");
+            $("#nine").val("");
+            $("#ten").val("");
+        };
+
+
+    });
+
+    function match()
+    
+    </script>
     
 </body>
 </html>
