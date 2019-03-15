@@ -5,11 +5,12 @@
     <title>Friend Finder App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Anton|Patua+One" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>   -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"> -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal-bs3patch.css"></script>
 </head>
 <body>
 
@@ -109,7 +110,7 @@
         </select>
 
         <h4>Question 8</h4>
-        <h5>A new adventure is a risk to get even if don't know how finsh</h5>
+        <h5>A new adventure is a risk to get even if don't know how finish</h5>
         <select class="selection" id="eight">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -143,8 +144,11 @@
 
         <hr>
 
-        <button type="submit" class="btn btn-secondary btn-lg btn-block" id="submit">Submit</button>
+        <!-- <button type="submit" class="btn btn-secondary btn-lg btn-block" id="submit">Submit</button> -->
 
+        <button type="submit" class="btn btn-secondary btn-lg btn-block" id="submit" data-target="#results-modal" data-toggle="modal"><i class="fa fa-check-circle" aria-hidden="true"></i>
+            Submit</button>
+       
     </div>
 
     <br>
@@ -157,29 +161,25 @@
         </footer>
     </div>
 
-    <!-- Modal -->
-
-    <div class="result-modal" tabindex="-1" role="dialog">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="results-modal" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Best match!</h5>
+              <h5 class="modal-title">Your Best Match!</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                 <h2 id="match-name"></h2>
-                <img id="match-img" src="../img/unk.png" alt="">
-            </div>
+                <img id="match-img" src="../img/unk.png" alt="">          </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
-
-
 
     <script>
     
@@ -191,25 +191,31 @@
         function validation() {
             var log = true;
             
+            // Validation of user's name and photo link
             $(".form-control").each(function() {
                 if($("this").val() === "") {
                     log = false;
+                    console.log("There is no name or photo link");
                 }
             });
 
+            // Validation of each question
             $(".selection").each(function() {
                 if($("this").val() === "") {
                     log = false;
                 }
             });
-        
+            return log;        
         };
 
         // If all fields are filled
         if(validation()) {
 
-            var match = {};
+            // Variables to show
+            var matchName = "";
+            var matchPhoto = "";
 
+            // Get user's data to post and compare
             var userData = {
                 name: $("#name").val(),
                 photo: $("#photo").val(),
@@ -228,46 +234,73 @@
             };
 
 
+        // Retrieve API data to compare
         $.get("/api/friends", function(data) {
 
-            for(var i = 0; i < userData.length; i++) {
-                
+            // Comparison variables
+            var total = 0;
+            var comp = 50;
+
+            // For each API object
+            for(var i = 0; i < data.length; i++) {
+
+                // Rest data each data score
+                for(j = 0; j < data[i].scores.length; j++) {
+
+                    var diff = Math.abs(data[i].scores[j] - userData.scores[i]);
+
+                    // Add each score line to get a global score. If total is near to 0, user and person [i] are similar, but if near to 50, they are totally different
+                    total += diff;
+                    console.log(total);
+                };
+
+                // Use conditional to set name and photo for the most similar person
+                if(total < comp) {
+                    matchName = data[i].name;
+                    console.log(matchName);
+                    matchPhoto = data[i].photo;
+                    // Set a new point to compare between API objects
+                    comp = total;
+                };
+
             };
+
+
         });
 
         // Post user's data
         $.post("/api/friends", userData, function(data) {
 
-            $("#match-name").text(data.name);
-            $("#match-img").attr("src", data.photo);
+            console.log("post done");
 
-            $("#result-modal").modal("show");
+            $("#match-name").text(matchName);
+            $("#match-img").attr("src", matchPhoto);
+            console.log(matchName+"\n"+matchPhoto)
+
+            $("#results-modal").modal();
+
+
         });
 
-
-
-            
         } else{
             alert("Sorry, please fill every field");
-
-            $("#name").val("");
-            $("#photo").val("");
-            $("#one").val("");
-            $("#two").val("");
-            $("#three").val("");
-            $("#four").val("");
-            $("#five").val("");
-            $("#six").val("");
-            $("#seven").val("");
-            $("#eight").val("");
-            $("#nine").val("");
-            $("#ten").val("");
         };
 
 
     });
 
-    function match()
+            // $("#name").val("");
+            // $("#photo").val("");
+            // $("#one").val("");
+            // $("#two").val("");
+            // $("#three").val("");
+            // $("#four").val("");
+            // $("#five").val("");
+            // $("#six").val("");
+            // $("#seven").val("");
+            // $("#eight").val("");
+            // $("#nine").val("");
+            // $("#ten").val("");
     
     </script>
     

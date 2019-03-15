@@ -3,7 +3,7 @@
 var friendsArray = [
     {
         name:"Morty",
-        photo:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia3.giphy.com%2Fmedia%2FtJfvJ2xK1lg3u%2Fgiphy.gif&imgrefurl=https%3A%2F%2Fwww.urbandictionary.com%2Fdefine.php%3Fterm%3DMorty%2520Smith&docid=-VZPIrZF5uTn1M&tbnid=V15mBtw63XgxGM%3A&vet=12ahUKEwjQrdr_gIHhAhVQA6wKHU-qCoc4yAEQMygsMCx6BAgBEC0..i&w=177&h=207&bih=706&biw=1536&q=morty&ved=2ahUKEwjQrdr_gIHhAhVQA6wKHU-qCoc4yAEQMygsMCx6BAgBEC0&iact=mrc&uact=8",
+        photo:"https://cdn.pastemagazine.com/www/articles/morty%20main.jpg",
         scores:[
             5,
             1,
@@ -19,7 +19,7 @@ var friendsArray = [
     },
     {
         name:"Jessica",
-        photo:"https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.disneyclips.com%2Fimagesnewb6%2Fimages%2Fjess1.gif&imgrefurl=https%3A%2F%2Fwww.disneyclips.com%2Fimagesnewb6%2Frogerrabbit.html&docid=z-C6ZcNwqxoc7M&tbnid=Ugzg6UHcbJKeqM%3A&vet=10ahUKEwi6gcKOgIHhAhUBbq0KHfKcA4oQMwiBASgcMBw..i&w=409&h=569&bih=706&biw=1536&q=roger%20rabbit&ved=0ahUKEwi6gcKOgIHhAhUBbq0KHfKcA4oQMwiBASgcMBw&iact=mrc&uact=8",
+        photo:"https://i.dailymail.co.uk/i/pix/2015/11/01/03/2DFDE3D100000578-3298724-The_real_Ms_Rabbit_The_cartoon_became_a_symbol_of_silver_screen_-m-111_1446348976525.jpg",
         scores:[
             1,
             1,
